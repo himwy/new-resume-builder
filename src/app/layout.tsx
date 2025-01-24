@@ -1,6 +1,8 @@
 import "./globals.css";
 import PInfo from "./components/PInfo";
 import EdInfo from "./components/EdInfo";
+import Exp from "./components/Exp";
+import React, { useState } from "react";
 
 const CVForm = () => {
   return (
