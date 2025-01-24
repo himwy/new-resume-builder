@@ -8,6 +8,9 @@ const CVForm = () => {
       <body>
         <div className="App">
           <h1 className="text-center mt-[30px] font-bold">CV Generator</h1>
+          <h2 className="text-center mt-[0px] text-[15px] italic text-red-400">
+            Fields with * are required.
+          </h2>
           <PInfo />
           <p> Education</p>
           <EdInfo />

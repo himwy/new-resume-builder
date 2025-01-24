@@ -10,19 +10,19 @@ function PInfo() {
   });
   const [isEditing, setIsEditing] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const [inputBorder, setInputBorder] = useState("border-black-500");
+  const [inputBorder, setInputBorder] = useState("border-black");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
     setErrorMessage("");
-    setInputBorder("border-black-500");
+    setInputBorder("border-black");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!info.name || !info.title || !info.email) {
-      setErrorMessage("Please fill in all fields!");
+    if (!info.name || !info.email) {
+      setErrorMessage("Please fill in all the required fields!");
       setInputBorder("border-red-500");
       return;
     }
@@ -35,7 +35,8 @@ function PInfo() {
       <form onSubmit={handleSubmit}>
         {isEditing ? (
           <div className="flex flex-col">
-            <label className="mr-[10px]"> *Name: </label>
+            <p className="italic"> Personal Infomation </p>
+            <label className="mr-[10px]"> * Name: </label>
             <input
               type="text"
               name="name"
@@ -43,15 +44,15 @@ function PInfo() {
               onChange={handleChange}
               className={`border ${inputBorder} rounded-md w-[125px]`}
             />
-            <label className="mr-[10px]"> *Professional Title: </label>
+            <label className="mr-[10px]"> Title: </label>
             <input
               type="text"
               name="title"
               value={info.title}
               onChange={handleChange}
-              className={`border ${inputBorder} rounded-md w-[125px]`}
+              className={`border border-black rounded-md w-[125px]`}
             />{" "}
-            <label className="mr-[10px]"> *Email: </label>
+            <label className="mr-[10px]"> * Email: </label>
             <input
               type="text"
               name="email"
@@ -59,9 +60,9 @@ function PInfo() {
               onChange={handleChange}
               className={`border ${inputBorder} rounded-md w-[125px]`}
             />{" "}
-            <p className="pt-[5px] text-red-500">{errorMessage}</p>
+            <p className="pt-[5px] text-red-500 italic">{errorMessage}</p>
             <button
-              className="mt-[12px] rounded-md bg-amber-200 w-[70px] p-[1px]"
+              className="mt-[12px] rounded-md bg-amber-200 w-[70px] p-[1px] hover:bg-amber-300 hover:shadow-lg ease-in-out duration-500"
               type="submit"
             >
               {" "}
@@ -70,7 +71,7 @@ function PInfo() {
           </div>
         ) : (
           <>
-            <ul className="font-roboto">
+            <ul className="font-roboto ml-[25px]">
               <li className="font-bold text-[20px]">{info.name}</li>
               <li className="tracking-wide">{info.title}</li>
               <li> Email: {info.email} </li>
