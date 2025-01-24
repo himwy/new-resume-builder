@@ -5,8 +5,8 @@ import React, { useState } from "react";
 function PInfo() {
   const [info, setInfo] = useState({
     name: "",
+    title: "",
     email: "",
-    phone: "",
   });
   const [isEditing, setIsEditing] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
@@ -21,7 +21,7 @@ function PInfo() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!info.name || !info.email) {
+    if (!info.name || !info.title || !info.email) {
       setErrorMessage("Please fill in all fields!");
       setInputBorder("border-red-500");
       return;
@@ -35,7 +35,7 @@ function PInfo() {
       <form onSubmit={handleSubmit}>
         {isEditing ? (
           <div className="flex flex-col">
-            <label className="mr-[10px]"> Name: </label>
+            <label className="mr-[10px]"> *Name: </label>
             <input
               type="text"
               name="name"
@@ -43,7 +43,15 @@ function PInfo() {
               onChange={handleChange}
               className={`border ${inputBorder} rounded-md w-[125px]`}
             />
-            <label className="mr-[10px]"> Email: </label>
+            <label className="mr-[10px]"> *Professional Title: </label>
+            <input
+              type="text"
+              name="title"
+              value={info.title}
+              onChange={handleChange}
+              className={`border ${inputBorder} rounded-md w-[125px]`}
+            />{" "}
+            <label className="mr-[10px]"> *Email: </label>
             <input
               type="text"
               name="email"
@@ -62,9 +70,10 @@ function PInfo() {
           </div>
         ) : (
           <>
-            <ul className="font-family-arial">
+            <ul className="font-roboto">
               <li className="font-bold text-[20px]">{info.name}</li>
-              <li>Email: {info.email}</li>
+              <li className="tracking-wide">{info.title}</li>
+              <li> Email: {info.email} </li>
             </ul>
             <button onClick={() => setIsEditing(true)}> Edit </button>
           </>
